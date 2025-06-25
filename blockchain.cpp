@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #define SATOSHI "ae4afa1b7a019375f5ca3d30085ddc484df42b63deddabb7d357c568c36848f4"
+#define SHAIKMARWAAN "96b12ca833aeaf2dfbf77f13547587b4e871b39578edd53b10b953112a88af88"
 
 Blockchain::Blockchain(unsigned int difficulty) : difficulty(difficulty) {
 	create_genesis_block();
@@ -13,7 +14,7 @@ void Blockchain::create_genesis_block() {
 	std::vector<TX_IN> inputs;
 	std::vector<TX_OUT> outputs;
 
-	outputs.push_back({ std::make_pair("SHAIKALI", 25)});
+	outputs.push_back({ std::make_pair(SATOSHI, 25)});
 	Transaction coinbase_tx(inputs, outputs);
 
 	std::vector<Transaction> dummy_txs;
@@ -130,7 +131,7 @@ void Blockchain::mine() {
 	std::vector<TX_IN> inputs;
 	std::vector<TX_OUT> outputs;
 
-	outputs.push_back({ std::make_pair("MINERMARWAAN", 5) });
+	outputs.push_back({ std::make_pair(SHAIKMARWAAN, 5) });
 
 	Transaction my_coinbase(inputs, outputs);
 	std::vector<Transaction> include_tx;
