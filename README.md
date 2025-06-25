@@ -1,7 +1,11 @@
-# Simplified Blockchain using C++
+# Simplified Blockchain in C++
 ![screenshot](https://raw.githubusercontent.com/oldddev/blockchain/refs/heads/master/Screenshot%20(4).png)
-I built this to learn more about cryptography and wanted to know how exactly bitcoin handles transactions. In this version, it does have some functionailty bitcoin has like the most important one UTXO and poW; I focused more on performance than security, which indeed breaks
-the purpose of blockchain ofcouse this is not for real use case but to learn. I have some plans for future to make it real one by adding extra functionalities like P2P networks for nodes, more optmize hash algorithm. But I have some other plans to work on. Currently working on 
-performence backend programming and game development (MY FAV).
+Built this mostly to mess around with C++ and get a better grip on how Bitcoin-style blockchains actually work under the hood. It's got a few core features like UTXOs and Proof-of-Work, not the most secure one or anything, I was way more interested in performance and just seeing things work. Yeah, that kinda breaks the whole "trustless secure system" idea but this one's just for learning, not real-world use.
+
+Might turn it into something more complete later on — maybe throw in proper P2P networking for nodes, better hashing optimization, and all that good stuff. But for now, I’m shifting gears to work on performance-heavy backend stuff and game dev (my fav area right now).
+
 ## Back for the project
-if you wanna test this, just download all source and header files. compile them all, then in main function do something like 
+
+![screenshot](https://raw.githubusercontent.com/oldddev/blockchain/refs/heads/master/Screenshot%20(5).png)
+Just download all the source and header files, compile them together, and in your main() function, do something like what's in the screenshot. The Blockchain class takes a difficulty value, higher difficulty = slower mining, but more secure (just like in real chains).
+Also yeah, I wrapped blockchain.mine() inside a loop on purpose, so it just keeps mining blocks until you shut it down. That’s all.
