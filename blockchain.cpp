@@ -13,7 +13,7 @@ void Blockchain::create_genesis_block() {
 	std::vector<TX_IN> inputs;
 	std::vector<TX_OUT> outputs;
 
-	outputs.push_back({ std::make_pair("SHAIKALI", 1000) });
+	outputs.push_back({ std::make_pair("SHAIKALI", 25)});
 	Transaction coinbase_tx(inputs, outputs);
 
 	std::vector<Transaction> dummy_txs;
@@ -46,12 +46,12 @@ void Blockchain::create_genesis_block() {
 bool Blockchain::verify_transaction(const Transaction& tx, size_t index) {
 
 	if (tx.get_inputs().size() == 0 && index == 0) {
-		std::cout << "WAS A COINBASE TRANSACTION\n";
 		return true; // COINBASE_CONDITION
 	}
 
 	uint64_t input_sum = 0;
 	uint64_t output_sum = 0;
+
 
 	for (const TX_IN& in : tx.get_inputs()) { // KEEP EYE ON THIS LOGIC
 		std::string unspent_key = in.input.first + ":" + std::to_string(in.input.second);
@@ -76,6 +76,7 @@ bool Blockchain::verify_transaction(const Transaction& tx, size_t index) {
 std::vector<std::string> Blockchain::find_unspents(const std::string& addr) {
 
 	std::vector<std::string> unspents;
+
 	for (auto& it : utxo) {
 		if (it.second.output.first == addr) {
 			unspents.push_back(it.first);
@@ -125,12 +126,11 @@ void Blockchain::initiate_transaction(const std::string& sender, const std::stri
 void Blockchain::mine() {
 
 	int take = std::min(10,(int)pending_transactions.size());
-	std::cout << "TAKEN: " << take << "\n";
 
 	std::vector<TX_IN> inputs;
 	std::vector<TX_OUT> outputs;
 
-	outputs.push_back({ std::make_pair("SHAIKALI", 5) });
+	outputs.push_back({ std::make_pair("MINERMARWAAN", 5) });
 
 	Transaction my_coinbase(inputs, outputs);
 	std::vector<Transaction> include_tx;
@@ -152,6 +152,7 @@ void Blockchain::mine() {
 	std::string hash;
 	uint64_t nonce = 0;
 
+
 	while (true) {
 		hash = compute_hash(base + std::to_string(nonce));
 		if (hash.substr(0, difficulty) == std::string(difficulty, '0')) break;
@@ -162,10 +163,10 @@ void Blockchain::mine() {
 	block_to_mine.set_nonce(nonce);
 
 	blocks.push_back(block_to_mine);
-	update_utxo();
+ 	update_utxo();
 	pending_transactions.clear();
 
-	std::cout << "Mined new block: " << "\n          Hash: " << hash << "\n          Nonce: " << nonce << "\n          Time: " << block_to_mine.get_time() << "\n";
+	std::cout << "Block Mined: " << "\n          Hash: " << hash << "\n          Nonce: " << nonce << "\n          Time: " << block_to_mine.get_time() << "\n";
 
 }
 
@@ -186,4 +187,8 @@ void Blockchain::show_utxo() const {
 	for (auto& it : utxo) {
 		std::cout << it.second.output.first << " has " << it.second.output.second << "\n";
 	}
+}
+
+bool Blockchain::validate_miner_block() {
+	return 0;
 }

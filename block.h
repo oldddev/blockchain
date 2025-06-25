@@ -27,3 +27,12 @@ class Block {
 	std::string get_block_header() const;
 	std::vector<Transaction> get_transactions() const;
 };
+
+struct Blockheader {
+
+	std::string prev_hash;
+	std::string merkle_root;
+	uint64_t time;
+	uint64_t nonce;
+
+};

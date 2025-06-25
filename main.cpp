@@ -1,11 +1,9 @@
 #include "blockchain.h"
 
 int main() {
-	Blockchain blockchain(2);
-	blockchain.initiate_transaction("SHAIKALI", "RASHED", 25);
-	for (int i = 0; i < 10; i++) {
+	Blockchain blockchain(1);
+	while (true) {
 		blockchain.mine();
 	}
-	blockchain.show_utxo();
 	return 0;
 }

@@ -20,5 +20,6 @@ class Blockchain {
 	void initiate_transaction(const std::string& sender, const std::string& receiver, uint64_t amount);
 	void update_utxo();
 	void show_utxo() const;
+	bool validate_miner_block();
 
 };

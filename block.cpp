@@ -14,8 +14,6 @@ Block::Block(const std::string& prev_hash, std::vector<Transaction>& transaction
 
 	this->merkel_root = compute_merkle_root(txids);
 
-	std::cout << "Previous hash: " << prev_hash << "\n";
-
 }
 
 std::string Block::get_hash() const {
